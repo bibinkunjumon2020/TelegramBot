@@ -29,7 +29,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = os.path.join(BASE_DIR,".env")
 load_dotenv(dotenv_path)
-print(dotenv_path)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
