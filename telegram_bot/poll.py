@@ -11,7 +11,7 @@ Website:https://bibinkunjumon.me.uk/
 
 """
 
-from telegram_bot import StatesGroup,State,types,FSMContext,logging,bot
+from telegram_bot import StatesGroup,State,types,FSMContext,logging,bot,start_command
 
 
 
@@ -50,11 +50,12 @@ async def handle_poll_question_options(message: types.Message, state: FSMContext
                 await message.answer("Sorry, I couldn't  send the poll.")
         finally:
             await state.finish()
+            # Pop up the command options 
+            await start_command(message=message)
     else:
         # Handle incorrect input
         await message.answer("Incorrect input. Please enter the question and answer options separated by commas, "
                               "for example: 'What is your favorite color?, Red, Blue, Green'")
         logging.debug("Poll Format Wrong")
-        # Set the state back to GET_POLL_QUESTION_OPTIONS
-        await state.set_state("GET_POLL_QUESTION_OPTIONS")
+       
 

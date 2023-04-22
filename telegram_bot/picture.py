@@ -10,7 +10,7 @@ Website:https://bibinkunjumon.me.uk/
 
 """
 
-from telegram_bot import types,aiohttp,logging
+from telegram_bot import types,aiohttp,logging,start_command
 
 async def animals_command(message: types.Message):
     """
@@ -26,6 +26,8 @@ async def animals_command(message: types.Message):
         picture_url = response_json[0]["url"]
         await message.answer_photo(picture_url)
         logging.info("Successfully posted an Animal Pic")
+        # Pop up the command options 
+        await start_command(message=message)
     except:
         # Handle exceptions and errors
         await message.answer("Sorry, I couldn't fetch a picture of cute animals.")

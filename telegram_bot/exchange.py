@@ -11,7 +11,7 @@ Website:https://bibinkunjumon.me.uk/
 
 """
 
-from telegram_bot import StatesGroup,State,types,FSMContext,logging,os,requests,json
+from telegram_bot import StatesGroup,State,types,FSMContext,logging,os,requests,json,start_command
 
 
 # Create a new state group for handling currency exchange
@@ -75,6 +75,8 @@ async def handle_exchange_amount_currencies(message: types.Message, state: FSMCo
         finally:
             # Reset the state
             await state.finish()
+            # Pop up the command options 
+            await start_command(message=message)
     else:
         # Handle incorrect input
         logging.debug("Incorrect input")

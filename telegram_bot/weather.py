@@ -11,7 +11,7 @@ Website:https://bibinkunjumon.me.uk/
 
 """
 
-from telegram_bot import StatesGroup,State,Message,os,requests,logging,FSMContext
+from telegram_bot import StatesGroup,State,Message,os,requests,logging,FSMContext,start_command
 
 
 class WeatherStates(StatesGroup):
@@ -54,3 +54,5 @@ async def handle_city_name(message: Message, state: FSMContext):
     weather_info = await get_weather_info(city_name)
     await message.answer(weather_info)
     await state.finish()
+    # Pop up the command options 
+    await start_command(message=message)
